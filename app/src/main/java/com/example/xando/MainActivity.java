@@ -61,7 +61,7 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
               public void onClick(View v) {
 
                   if(isBoxSelectable(0)){
-
+                      performAction((ImageView)v ,0);
                   }
               }
           });
@@ -70,7 +70,7 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
             @Override
             public void onClick(View v) {
                 if(isBoxSelectable(1)){
-
+                    performAction((ImageView)v ,1);
                 }
             }
         });
@@ -79,7 +79,7 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
             @Override
             public void onClick(View v) {
                 if(isBoxSelectable(2)){
-
+                    performAction((ImageView)v ,2);
                 }
             }
         });
@@ -88,7 +88,7 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
             @Override
             public void onClick(View v) {
                 if(isBoxSelectable(3)){
-
+                    performAction((ImageView)v ,3);
                 }
             }
         });
@@ -97,7 +97,7 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
             @Override
             public void onClick(View v) {
                 if(isBoxSelectable(4)){
-
+                    performAction((ImageView)v ,4);
                 }
             }
         });
@@ -105,7 +105,7 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
             @Override
             public void onClick(View v) {
                 if(isBoxSelectable(5)){
-
+                    performAction((ImageView)v ,5);
                 }
             }
         });
@@ -113,7 +113,7 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
             @Override
             public void onClick(View v) {
                 if(isBoxSelectable(6)){
-
+                    performAction((ImageView)v ,6);
                 }
             }
         });
@@ -121,7 +121,7 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
             @Override
             public void onClick(View v) {
                 if(isBoxSelectable(7)){
-
+                    performAction((ImageView)v ,7);
                 }
             }
         });
@@ -129,7 +129,7 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
             @Override
             public void onClick(View v) {
                 if(isBoxSelectable(8)){
-
+                performAction((ImageView)v ,8);
                 }
             }
         });
@@ -142,12 +142,50 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
             imageView.setImageResource(R.drawable.x);
             if(checkPlayerWin()){
             WinDialog winDialog = new WinDialog(MainActivity.this,playerOneName.getText().toString() + "has won the match",MainActivity.this);
+            winDialog.setCancelable(false);
             winDialog.show();
             }
 
             else if(totalSelectedBoxes == 9){
+                WinDialog winDialog = new WinDialog(MainActivity.this,"it is a draw",MainActivity.this);
+                winDialog.setCancelable(false);
 
+                winDialog.show();
             }
+            else {
+                changePlayerTurn(2);
+                totalSelectedBoxes++;
+            }
+        }
+        else{
+            imageView.setImageResource(R.drawable.o);
+            if(checkPlayerWin()){
+                WinDialog winDialog = new WinDialog(MainActivity.this,playerTwoName.getText().toString() + "has won the match",MainActivity.this);
+                winDialog.setCancelable(false);
+                winDialog.show();
+            }
+            else if(selectedBoxPosition==9){
+                WinDialog winDialog = new WinDialog(MainActivity.this,"it is a draw",MainActivity.this);
+                winDialog.setCancelable(false);
+
+                winDialog.show();
+            }
+            else{
+                changePlayerTurn(1);
+                totalSelectedBoxes++;
+            }
+        }
+    }
+
+    private void changePlayerTurn(int currentPlayerTurn ){
+        playerTurn = currentPlayerTurn;
+        if(playerTurn ==1 ){
+            playerOneLayout.setBackgroundResource(R.drawable.round_back_blue_border);
+            playerTwoLayout.setBackgroundResource(R.drawable.round_back_dark_blue);
+        }
+        else {
+            playerTwoLayout.setBackgroundResource(R.drawable.round_back_blue_border);
+            playerOneLayout.setBackgroundResource(R.drawable.round_back_dark_blue);
         }
     }
     private boolean checkPlayerWin(){
@@ -168,5 +206,19 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
 
         }
         return response;
+    }
+    public void restartMatch(){
+        boxPositions = new int[]{0,0,0,0,0,0,0,0,0};
+        playerTurn =1;
+        totalSelectedBoxes =1;
+        image1.setImageResource(R.drawable.transprent_back);
+        image2.setImageResource(R.drawable.transprent_back);
+        image3.setImageResource(R.drawable.transprent_back);
+        image4.setImageResource(R.drawable.transprent_back);
+        image5.setImageResource(R.drawable.transprent_back);
+        image6.setImageResource(R.drawable.transprent_back);
+        image7.setImageResource(R.drawable.transprent_back);
+        image8.setImageResource(R.drawable.transprent_back);
+        image9.setImageResource(R.drawable.transprent_back);
     }
 }
