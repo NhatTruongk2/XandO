@@ -140,13 +140,26 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
 
         if (playerTurn ==1 ){
             imageView.setImageResource(R.drawable.x);
+            if(checkPlayerWin()){
+            WinDialog winDialog = new WinDialog(MainActivity.this,playerOneName.getText().toString() + "has won the match",MainActivity.this);
+            winDialog.show();
+            }
+
+            else if(totalSelectedBoxes == 9){
+
+            }
         }
     }
     private boolean checkPlayerWin(){
         boolean response =false;
         for(int i = 0 ; i < combinationList.size() ; i++){
-            final int[]
+            final int[] combination = combinationList.get(i);
+
+            if(boxPositions[combination[0]] == playerTurn && boxPositions[combination[1]] == playerTurn && boxPositions[combination[2]]== playerTurn){
+                response =true;
+            }
         }
+        return response;
     }
     private boolean isBoxSelectable(int boxPosition){
         boolean response = false;
