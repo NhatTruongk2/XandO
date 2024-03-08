@@ -12,11 +12,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Nhập tên người chơi"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        android:text="Enter Player Name"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +41,7 @@
             android:layout_marginEnd="90dp"
             android:background="@color/white"
             android:hint="Player One"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:textColorHint="@color/black" />
     </LinearLayout>
 
@@ -70,7 +69,7 @@
             android:layout_marginEnd="90dp"
             android:background="@color/white"
             android:hint="Player Two"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/black"
             android:textColorHint="@color/black" />
 
     </LinearLayout>

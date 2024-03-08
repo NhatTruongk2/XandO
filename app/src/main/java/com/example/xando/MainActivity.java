@@ -141,13 +141,13 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
         if (playerTurn ==1 ){
             imageView.setImageResource(R.drawable.x);
             if(checkPlayerWin()){
-            WinDialog winDialog = new WinDialog(MainActivity.this,playerOneName.getText().toString() + "has won the match",MainActivity.this);
+            WinDialog winDialog = new WinDialog(MainActivity.this,playerOneName.getText().toString() + " vô địch",MainActivity.this);
             winDialog.setCancelable(false);
             winDialog.show();
             }
 
             else if(totalSelectedBoxes == 9){
-                WinDialog winDialog = new WinDialog(MainActivity.this,"it is a draw",MainActivity.this);
+                WinDialog winDialog = new WinDialog(MainActivity.this,"Bất phân thắng bại, chiến tiếp",MainActivity.this);
                 winDialog.setCancelable(false);
 
                 winDialog.show();
@@ -160,12 +160,12 @@ final  String getPlayerOneName = getIntent().getStringExtra("playerOne");
         else{
             imageView.setImageResource(R.drawable.o);
             if(checkPlayerWin()){
-                WinDialog winDialog = new WinDialog(MainActivity.this,playerTwoName.getText().toString() + "has won the match",MainActivity.this);
+                WinDialog winDialog = new WinDialog(MainActivity.this,playerTwoName.getText().toString() + " không có đối thủ",MainActivity.this);
                 winDialog.setCancelable(false);
                 winDialog.show();
             }
             else if(selectedBoxPosition==9){
-                WinDialog winDialog = new WinDialog(MainActivity.this,"it is a draw",MainActivity.this);
+                WinDialog winDialog = new WinDialog(MainActivity.this,"Bất phân thắng bại, chiến tiếp",MainActivity.this);
                 winDialog.setCancelable(false);
 
                 winDialog.show();
